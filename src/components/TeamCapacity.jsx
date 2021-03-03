@@ -5,18 +5,23 @@ class TeamCapacity extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			value: "30",
-			capacity:''
+			result: '',
+			capacity1:'',
+			capacity2:'',
+			capacity:[]
 		};
 	}
 
 	handleCalculate = () => {
-
+		const{capacity1, capacity2} = this.state;
+        this.setState({
+            result: (parseInt(capacity1)+parseInt(capacity2))
+        })
 	};
 
 	handleChange = (e) => {
 		e.preventDefault();
-		//this.setState({[e.target.name] :  })
+		this.setState({[e.target.name] : e.target.value })
 	}
 
 	render() {
@@ -29,7 +34,7 @@ class TeamCapacity extends Component {
 								Edward
 							</Form.Label>
 							<Col sm="8">
-								<Form.Control type="number" name='sum' value={this.state.capacity} onChange={this.handleChange} placeholder="capacity" />
+								<Form.Control type="number" name='capacity1' value={this.state.capacity1} onChange={this.handleChange} placeholder="capacity" />
 							</Col>
 						</Form.Group>
 
@@ -38,7 +43,7 @@ class TeamCapacity extends Component {
 								John
 							</Form.Label>
 							<Col sm="8">
-								<Form.Control type="number" name='sum' value={this.state.capacity} onChange={this.handleChange} placeholder="capacity" />
+								<Form.Control type="number" name='capacity2' value={this.state.capacity2} onChange={this.handleChange} placeholder="capacity" />
 							</Col>
 						</Form.Group>
 					</Form>
@@ -47,7 +52,7 @@ class TeamCapacity extends Component {
 					<Button onClick={this.handleCalculate} variant="primary">Calculate</Button>{" "}
 				</div>
 				<div style={{ display: "flex", justifyContent: "center" }}>
-					<label>Team Capacity is: {this.state.value}</label>
+					<label>Team Capacity is: {this.state.result}</label>
 				</div>
 			</div>
 		);
