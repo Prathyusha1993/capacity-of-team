@@ -19,12 +19,6 @@ class TeamCapacity extends Component {
 
 	handleButton = () => {};
 
-	// handleActiveKeyChange = (activeKey) => {
-	// 	if (this.state.activeKey === activeKey) {
-	// 		activeKey = -1;
-	// 	}
-	// 	this.setState({ activeKey });
-	// };
 
 	render() {
 		return (
