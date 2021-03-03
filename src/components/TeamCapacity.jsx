@@ -2,86 +2,112 @@ import React, { Component } from "react";
 import { Form, Row, Col, Button } from "react-bootstrap";
 import { calculateCapacity } from "../util/capacityCalculator";
 
+const teamMembers = [
+    'Edward',
+    'John',
+    'Michael'
+]
+
 class TeamCapacity extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			result: "",
-			capacity1: "",
-			capacity2: "",
-		};
-	}
+    constructor(props) {
+        super(props);
+        this.state = {
+            result: "",
+            teamMembers: [{
+                id: '1',
+                name: 'Edward',
+                capacity: 1
+            },
+            {
+                id: '2',
+                name: 'John',
+                capacity: 0
+            },
+            {
+                id: '3',
+                name: 'Michael',
+                capacity: 0
+            }]
+        };
+    }
 
-	handleCalculate = () => {
-		const { capacity1, capacity2 } = this.state;
+    handleCalculate = () => {
 
-		const teamCapacity = calculateCapacity();
+        const teamCapacity = calculateCapacity(this.state.teamMembers);
 
-		// this.setState({
-		//     result: (parseInt(capacity1)+parseInt(capacity2))
-		// });
+        this.setState({
+            result: teamCapacity,
+        });
+    };
 
-		this.setState({
-			result: teamCapacity,
-		});
-	};
+    handleCapacityChange = (id, capacity) => {
 
-	handleChange = (e) => {
-		e.preventDefault();
-		this.setState({ [e.target.name]: e.target.value });
-	};
 
-	/**
-	 * currently the names in the form are hardcoded
-	 * it has to be enhanced to handle new team members added to the team.
-	 */
-	render() {
-		return (
-			<div>
-				<div style={{ display: "flex", justifyContent: "center" }}>
-					<Form>
-						<Form.Group as={Row} controlId="formPlaintextEmail">
-							<Form.Label column sm="4">
-								Edward
-							</Form.Label>
-							<Col sm="8">
-								<Form.Control
-									type="number"
-									name="capacity1"
-									value={this.state.capacity1}
-									onChange={this.handleChange}
-									placeholder="capacity"
-								/>
-							</Col>
-						</Form.Group>
+        const existingTeamMembers = this.state.teamMembers;
 
-						<Form.Group as={Row} controlId="formPlaintextPassword">
-							<Form.Label column sm="4">
-								John
-							</Form.Label>
-							<Col sm="8">
-								<Form.Control
-									type="number"
-									name="capacity2"
-									value={this.state.capacity2}
-									onChange={this.handleChange}
-									placeholder="capacity"
-								/>
-							</Col>
-						</Form.Group>
-					</Form>
-				</div>
-				<div style={{ display: "flex", justifyContent: "center" }}>
-					<Button onClick={this.handleCalculate} variant="primary">
-						Calculate
+        const transformedTeamMembers = existingTeamMembers.map((teamMember) => {
+
+            if(teamMember.id === id) {
+                return {
+                    id: teamMember.id,
+                    name: teamMember.name,
+                    capacity: capacity
+                }
+            } else {
+                return {
+                    id: teamMember.id,
+                    name: teamMember.name,
+                    capacity: teamMember. capacity
+                }
+            }
+
+            
+        });
+
+        this.setState({teamMembers: transformedTeamMembers});
+    };
+
+    /**
+     * currently the names in the form are hardcoded
+     * it has to be enhanced to handle new team members added to the team.
+     */
+    render() {
+        return (
+            <div>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                    <Form>
+                        {
+                            this.state.teamMembers.map((teamMember) => {
+                                return (<Form.Group as={Row}>
+                                    <Form.Label column sm="4">
+                                        {teamMember.name} {teamMember.id}
+                                    </Form.Label>
+                                    <Col sm="8">
+                                        <Form.Control
+                                            type="number"
+                                            value={teamMember.capacity}
+                                            onChange={(e) => {
+                                                this.handleCapacityChange(teamMember.id, e.target.value);
+                                            }}
+                                            placeholder="capacity"
+                                        />
+                                    </Col>
+                                </Form.Group>);
+                            })
+                        }
+                    </Form>
+                </div>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                    <Button onClick={this.handleCalculate} variant="primary">
+                        Calculate
 					</Button>{" "}
-				</div>
-				<div style={{ display: "flex", justifyContent: "center" }}>
-					<label>Team Capacity is: {this.state.result}</label>
-				</div>
-			</div>
-		);
-	}
+                </div>
+                <div style={{ display: "flex", justifyContent: "center", marginTop: '20px' }}>
+                    <label>Team Capacity is: {this.state.result}</label>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default TeamCapacity;
