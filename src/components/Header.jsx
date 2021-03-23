@@ -5,9 +5,9 @@ import { Navbar } from "react-bootstrap";
 class Header extends Component {
 	render() {
 		return (
-			<div>
-				<Navbar expand="lg" variant="light" bg="light">
-					<Navbar.Brand href="#" >Company Name</Navbar.Brand>
+			<div >
+				<Navbar style={{backgroundColor: "#131921"}}  expand="lg" >
+					<Navbar.Brand href="#" style={{color: "white"}}>Company Name</Navbar.Brand>
 				</Navbar>
 			</div>
 		);
