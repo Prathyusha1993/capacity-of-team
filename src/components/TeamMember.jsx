@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Teams = () => {
+const TeamMember = () => {
     return(
         <div>
             This is Team Member page. Add content here.
@@ -8,4 +8,4 @@ const Teams = () => {
     )
 }
 
-export default Teams;
+export default TeamMember;

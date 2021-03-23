@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import "../../App.css";
 import TeamCapacity from "../TeamCapacity";
 import Home from '../Home';
-import Teams from '../Teams'
+import TeamMember from '../TeamMember'
 import { Route, BrowserRouter as Router, Switch, Link } from "react-router-dom";
 
 class SideNavBar extends Component {
@@ -22,7 +22,7 @@ class SideNavBar extends Component {
 					<Link to="/TeamCapacity">
 						<p>Capacity</p>
 					</Link>
-					<Link to="/team">
+					<Link to="/TeamMember">
 						<p>Team</p>
 					</Link>
 				</div>
@@ -34,8 +34,8 @@ class SideNavBar extends Component {
 						<Route exact path="/TeamCapacity">
 							<TeamCapacity />
 						</Route>
-						<Route exact path="/Teams">
-							<Teams />
+						<Route exact path="/TeamMember">
+							<TeamMember />
 						</Route>
 					</Switch>
 				</div>
