@@ -7,7 +7,7 @@ class Header extends Component {
 		return (
 			<div>
 				<Navbar expand="lg" variant="light" bg="light">
-					<Navbar.Brand href="#">Team</Navbar.Brand>
+					<Navbar.Brand href="#" >Team</Navbar.Brand>
 				</Navbar>
 			</div>
 		);

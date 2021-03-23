@@ -12,8 +12,8 @@ class App extends Component {
 			<div className="App">
 				<Header />
 				<br />
-				{/* <SideNavBar /> */}
-				<TeamCapacity />
+				<SideNavBar />
+				{/* <TeamCapacity /> */}
 			</div>
 		);
 	}
